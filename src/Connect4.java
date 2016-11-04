@@ -1,20 +1,40 @@
+/**
+ * Sean Schlaefli
+ * seanschlaefli@yahoo.com
+ * CS151 Assignment 5
+ * Connect4.java
+ * Create the main GUI and launch the application
+ * compiles
+ * unfinished
+ */
 
-public class Connect4 {
+import javafx.application.Application;
+import javafx.stage.Stage;
 
-	public static void main(String[] args) {
-		Connect4GUI app;
-		Connect4Presenter presenter;
-		Logic logic;
-		if (args.length == 0) {
-			logic = new Logic("7", 4);
-			presenter = new Presenter(logic);
-			app = new Connect4GUI(presenter);
-		}
-		else {
-			logic = new Logic(args[0], args[1]);
-			presenter = new Presenter(logic);
-			app = new Connect4GUI(presenter);
-		}
+public class Connect4 extends Application{
+
+	public static int boardSize;
+	public static int winSize;
+
+	public static void main(String [] args){
+		if (true) {
+			boardSize = 7;
+			winSize = 4;
+			launch(args);
+		
+
+		} else {
+			boardSize = Integer.parseInt(args[0]);
+			winSize = Integer.parseInt(args[1]);
+			launch(args);
+		}	
+	}
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		GameLogic g = new GameLogic(boardSize, winSize);
+		Connect4GUI app = new Connect4GUI(new Connect4Presenter(g));
+		app.start(primaryStage);
 	}
 
 }
