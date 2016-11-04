@@ -132,9 +132,17 @@ public class Connect4App extends Application {
 	}
 
 	public static void main(String[] args) {
-		setColumns(args[0]);
-		setRows(args[0]);
-		launch(args);
+		if (args.length == 0) {
+			setColumns("7");
+			setRows("7");
+			launch(args);
+		}
+		else {
+			setColumns(args[0]);
+			setRows(args[0]);
+			launch(args);
+		}
+
 	}
 
 	private static void setRows(String string) {

@@ -5,29 +5,7 @@ import java.util.Scanner;
 
 public class Logic {
 
-    // This method attempts to put the disk of the given color in the given column.
-    // It returns true if successful and false if the column is filled and we cannot 
-    // put a disk.
-    public static boolean putDisk(char[][] field, int column, char color) {
-        // If the first disk is there, the column is filled, returning false.
-        if (field[0][column] != ' ')
-            return false;
 
-        // Check all elements in the column.
-        for (int row = 0; row < 7; ++row) {
-            // If we found something, which means if the character is not
-            // zero character
-            if (field[row][column] != ' ') {
-                // Put the disk on top of the current one.
-                field[row-1][column] = color;
-                return true;
-            }
-        }
-        
-        // If no other disks found, we place this disk at the bottom.
-        field[6][column] = color;
-        return true;
-    }
 
 
     // Check rows, if there are 4 or more disks of the same color - return winner color
@@ -247,5 +225,29 @@ public class Logic {
             // to alternate turns.
             isRed = !isRed;
         }
+    }
+    
+    // This method attempts to put the disk of the given color in the given column.
+    // It returns true if successful and false if the column is filled and we cannot 
+    // put a disk.
+    public static boolean putDisk(char[][] field, int column, char color) {
+        // If the first disk is there, the column is filled, returning false.
+        if (field[0][column] != ' ')
+            return false;
+
+        // Check all elements in the column.
+        for (int row = 0; row < 7; ++row) {
+            // If we found something, which means if the character is not
+            // zero character
+            if (field[row][column] != ' ') {
+                // Put the disk on top of the current one.
+                field[row-1][column] = color;
+                return true;
+            }
+        }
+        
+        // If no other disks found, we place this disk at the bottom.
+        field[6][column] = color;
+        return true;
     }
 }
