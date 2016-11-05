@@ -20,7 +20,7 @@ public class Connect4 extends Application{
 	public static void main(String [] args){
 		if (args.length == 0) {
 			boardSize = 7;
-			winSize = 5;
+			winSize = 4;
 			launch(args);
 		
 

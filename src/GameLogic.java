@@ -226,13 +226,5 @@ public class GameLogic {
 		return field.length;
 	}
 	
-	public void restart() {
-		for (int y = 0; y < field.length; y++) {
-    		for (int x = 0; x < field[y].length; x++) {
-    			field[y][x] = 'c';
-    		}
-    	}
-		isRed = true;
-	}
     
 }
