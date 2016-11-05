@@ -48,7 +48,7 @@ public class Connect4Presenter{
 	 */
 	public String isOver(){	    
 	    char flow = game.isOver();
-	    System.out.println(flow);
+	    // System.out.println(flow);
 		if (flow == 'c')
 			return "c";
 		else if (flow == 'R')

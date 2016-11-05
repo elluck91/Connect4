@@ -156,7 +156,7 @@ public class GameLogic {
                 				+ " =?= field[" + (row+column) + "][" + column + "] = " + field[row + column][column] + "\n");*/
                 if (field[row + column][column] != 'c' &&
                     field[row+column - 1][column - 1] == field[row + column][column]) {
-                	System.out.println("TRUE");
+                	// System.out.println("TRUE");
                 	++count;
                 }
                     
@@ -205,7 +205,7 @@ public class GameLogic {
                 
                 if (field[row+column][field.length - column - 1] != 'c' &&
                     field[row+column -1][field.length - column] == field[row + column][field.length - column - 1]) {
-                	System.out.println("TRUE");
+                //	System.out.println("TRUE");
                 	++count;
                 }
                     
