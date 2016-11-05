@@ -1,12 +1,10 @@
-import java.util.Scanner;
-
 public class GameLogic {
 	private static int winSize;
 	private static char[][] field;
 	private static boolean isRed;
 	
-	public GameLogic(int boardSize, int winSize) {
-		field = new char[boardSize][boardSize];
+	public GameLogic(int fieldSize, int winSize) {
+		field = new char[fieldSize][fieldSize];
 		
     	for (int y = 0; y < field.length; y++) {
     		for (int x = 0; x < field[y].length; x++) {
@@ -53,6 +51,7 @@ public class GameLogic {
         isRed = !isRed;
         return true;
     }
+    
     
     public char isOver() {
         char winner = getWinnerInRows();
@@ -151,9 +150,15 @@ public class GameLogic {
                 // Coordinates an the diagonal change as [row + i][column + i], 
                 // so we stop when column can get outside of the range
                 if (column + row >= field.length) break;
+                /*System.out.print("[" + (row+column) + "]" + "[" + column + "] = " + field[row + column][column] + " | "
+                		+ "field[" + (row+column - 1) + "][" + (column - 1) + "] = " + field[row+column - 1][column - 1]
+                				+ " =?= field[" + (row+column) + "][" + column + "] = " + field[row + column][column] + "\n");*/
                 if (field[row + column][column] != 'c' &&
-                    field[row+column - 1][column - 1] == field[row + column][column])
-                    ++count;
+                    field[row+column - 1][column - 1] == field[row + column][column]) {
+                	System.out.println("TRUE");
+                	++count;
+                }
+                    
                 else
                     count = 1;
                 if (count >= winSize) return field[row + column][column];
@@ -179,29 +184,36 @@ public class GameLogic {
                 if (count >= winSize) return field[row][column-row];
             }
         }
-
+      
+        
         // There are diagonals, that starts on left of each row, let's check them
         for (int row = 0; row < field.length; ++row) {
             int count = 0;
             // Traverse diagonal that starts at [row][0], we start with the first column,
             // because we will compare elements with the previous one, similar to how
             // we did this for rows and columns
-            
-            // Used to be int column = 5, don't know why !!!!!!!!!!!!!!!!!!
-            for (int column = (field.length-2); column >= 0; --column) {
+            for (int column = 1; column < field.length; ++column) {
                 // Coordinates an the diagonal change as [row + i][column + i], 
                 // so we stop when column can get outside of the range
-                if (column - row < 0) break;
-                if (field[column - row][column] != 'c' &&
-                    field[column - row - 1][column + 1] == field[column - row][column])
-                    ++count;
+                if (column + row >= field.length) break;
+                System.out.print("[" + (row+column) + "]" + "[" + (field.length - column - 1) + "] = "
+                + field[row + column][field.length - column - 1]  + " | " 
+                		+ "field[" + (row+column -1) + "][" + (field.length - column)
+                + "] = " + field[row+column][field.length - column-1] + " =?= field[" + (row+column) + "][" + (field.length - column -1) + "] = " 
+                + field[row + column][field.length - column] + "\n");
+                
+                if (field[row+column][field.length - column - 1] != 'c' &&
+                    field[row+column -1][field.length - column] == field[row + column][field.length - column - 1]) {
+                	System.out.println("TRUE");
+                	++count;
+                }
+                    
                 else
                     count = 1;
-                if (count >= winSize) return field[column - row][column];
+                if (count >= winSize) return field[row + column][column];
             }
         }
 
-        // Otherwise return 'c'  character, which means nobody win in rows.
         return 'c';
     }
 
