@@ -54,7 +54,6 @@ public class GameLogic {
         return true;
     }
     
-    
     public char isOver() {
         char winner = getWinnerInRows();
         if (winner != 'c') return winner;
@@ -198,11 +197,11 @@ public class GameLogic {
                 // Coordinates an the diagonal change as [row + i][column + i], 
                 // so we stop when column can get outside of the range
                 if (column + row >= field.length) break;
-                System.out.print("[" + (row+column) + "]" + "[" + (field.length - column - 1) + "] = "
+                /*System.out.print("[" + (row+column) + "]" + "[" + (field.length - column - 1) + "] = "
                 + field[row + column][field.length - column - 1]  + " | " 
                 		+ "field[" + (row+column -1) + "][" + (field.length - column)
                 + "] = " + field[row+column][field.length - column-1] + " =?= field[" + (row+column) + "][" + (field.length - column -1) + "] = " 
-                + field[row + column][field.length - column] + "\n");
+                + field[row + column][field.length - column] + "\n");*/
                 
                 if (field[row+column][field.length - column - 1] != 'c' &&
                     field[row+column -1][field.length - column] == field[row + column][field.length - column - 1]) {
