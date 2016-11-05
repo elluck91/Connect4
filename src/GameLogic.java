@@ -1,3 +1,5 @@
+
+
 public class GameLogic {
 	private static int winSize;
 	private static char[][] field;
@@ -223,6 +225,15 @@ public class GameLogic {
 
 	public int getColumns() {
 		return field.length;
+	}
+	
+	public void restart() {
+		for (int y = 0; y < field.length; y++) {
+    		for (int x = 0; x < field[y].length; x++) {
+    			field[y][x] = 'c';
+    		}
+    	}
+		isRed = true;
 	}
     
 }
